@@ -1,0 +1,7 @@
+com\statefarm1\qa\common\CommonWaits.class
+com\statefarm1\reporting\Loggers.class
+com\statefarm1\qa\object\HomePage.class
+com\statefarm1\qa\utils\Configuration.class
+com\statefarm1\qa\object\AutoQuotePage.class
+com\statefarm1\qa\base\BaseClass.class
+com\statefarm1\qa\common\Common.class
