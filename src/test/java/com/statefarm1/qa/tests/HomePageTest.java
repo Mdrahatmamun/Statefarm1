@@ -11,8 +11,8 @@ public class HomePageTest extends BaseClass {
 	
 	public void homeActions() {
 	homePage.homepageSteps("Get an insurance quote", "11218");
-	autoQuote.autoQuotePageSteps("Rahat");
-		
+	autoQuote.autoQuotePageSteps("Rahat", "145 chester ave", "Brooklyn");
+	
 		
 		
 	}

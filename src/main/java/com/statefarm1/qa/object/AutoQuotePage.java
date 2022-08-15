@@ -1,12 +1,9 @@
 package com.statefarm1.qa.object;
 
-import javax.management.loading.PrivateClassLoader;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 import com.statefarm1.qa.common.Common;
 
 public class AutoQuotePage {
@@ -64,16 +61,21 @@ public class AutoQuotePage {
 	private void acceptButton() {
 		commons.click(acceptButtonElement);
 	}
+	
+	private void submitbutton() {
+		commons.click(submitElement);
+	}
 		
 	
 			
 
-	public void autoQuotePageSteps(String value) {
+	public void autoQuotePageSteps(String value, String address, String city) {
 		inputFirstName(value);
 		lastName(value);
 		homeAddress(value);
 		dob(value);
 		acceptButton();
+		submitbutton();
 		
 
 	}
