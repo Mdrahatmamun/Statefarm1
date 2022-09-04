@@ -1,9 +1,13 @@
 package com.statefarm1.qa.object;
 
+import static org.testng.Assert.assertEquals;
+
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
 import com.statefarm1.qa.common.Common;
 
 public class AutoQuotePage {
@@ -26,58 +30,70 @@ public class AutoQuotePage {
 
 	@FindBy(xpath = "//input[@name='welcomeAddress.street1']")
 	WebElement addressElement;
-
+	
+	@FindBy(xpath = "//input[@id='street2']")
+	WebElement aptElement;
+	
 	@FindBy(xpath = "//input[@id='date_of_birth']")
 	WebElement dobElement;
 
-	@FindBy(name = "acceptingTermsAndConditions")
+	@FindBy(xpath = "//label[@for='termsIDCheckbox']")
 	WebElement acceptButtonElement;
 
-	@FindBy(xpath = "(//button[@type='submit'])[1]")
+	@FindBy(xpath = "//button[@id='btnContinue']")
 	WebElement submitElement;
+	
+	@FindBy(xpath = "//h1[text()='Sorry – Our System Has Timed Out']")
+	WebElement pageTextElement;
 
-	@FindBy(xpath = "//button[@name='continueFairCreditReport']")
-	WebElement submitElement2;
 
-	@FindBy(id = "addVehicleButton")
-	WebElement clickElement2;
-
-	private void inputFirstName(String value) {
-		commons.inputValues(inputFirstNameElement, value);
+	private void inputFirstName(String firstName) {
+		commons.inputValues(inputFirstNameElement, firstName);
 	}
 
-	private void lastName(String value) {
-		commons.inputValues(inputLastNameElement, value);
+	private void inputLastName(String lastName) {
+		commons.inputValues(inputLastNameElement, lastName);
 	}
 
-	private void homeAddress(String value) {
-		commons.inputValues(addressElement, value);
+	private void inputHomeAddress(String address) {
+		commons.inputValues(addressElement, address);
 	}
-
-	private void dob(String value) {
-		commons.inputValues(dobElement, value);
+	
+	private void inputApt(String apt) {
+		commons.inputValues(aptElement, apt);
+	}
+	
+	private void inputDob(String dob) {
+		commons.inputValues(dobElement, dob);
 	}
 	
 	private void acceptButton() {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(true);", acceptButtonElement);
 		commons.click(acceptButtonElement);
 	}
 	
-	private void submitbutton() {
+	private void nextButton() {
 		commons.click(submitElement);
+	}
+	
+	private void verifyPageText(String text) {
+		assertEquals(commons.getText(pageTextElement), text);
 	}
 		
 	
 			
 
-	public void autoQuotePageSteps(String value, String address, String city) {
-		inputFirstName(value);
-		lastName(value);
-		homeAddress(value);
-		dob(value);
+	public void autoQuotePageSteps(String firstName, String lastName,  String address, String apt, String dob, String text) {
+		inputFirstName(firstName);
+		inputLastName(lastName);
+		inputHomeAddress(address);
+		inputApt(apt);
+		inputDob(dob);
 		acceptButton();
-		submitbutton();
+		nextButton();
+		verifyPageText(text);
 		
-
 	}
 
 }
