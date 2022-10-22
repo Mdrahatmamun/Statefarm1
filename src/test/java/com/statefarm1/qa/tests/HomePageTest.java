@@ -10,7 +10,7 @@ public class HomePageTest extends BaseClass {
 	@Test
 	
 	public void homeActions() {
-	homePage.homepageSteps("Get an insurance quote", "11218");
+	homePage.homepageSteps("11218");
 	}
 
 }

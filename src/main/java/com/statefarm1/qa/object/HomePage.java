@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.statefarm1.qa.common.Common;
+import com.statefarm1.qa.utils.AutoData;
 
 public class HomePage {
 
@@ -20,8 +21,6 @@ public class HomePage {
 
 	}
 	
-	@FindBy (xpath =  "//h2[text()='Get an insurance quote']")
-	WebElement h2TextElement;
 	
 	@FindBy (xpath = "//img[@class='-oneX-header-logo']")
 	WebElement logoElement;
@@ -31,12 +30,26 @@ public class HomePage {
 
 	@FindBy(xpath = "//button[@id='quote-main-zip-btn']")
 	WebElement clickStartQuoteElement;
+	
+	@FindBy(id = "nyLegacyCloseLinkId")
+	WebElement popUpElement;
+	
+	public void getCurrentUrl() {
+		commons.getCurrentUrl(driver);
+	}
+
+
+/*	public void clickAtGetQuote() {
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+		jsExecutor.executeScript("arguments[0].scrollIntoView(true);", getQuotElement);
+		commons.click(getQuotElement);
+	}*/
+	
+	public void clickAtPopUp() {
+		commons.click(popUpElement);
+	}
 
 	
-	private void verifyHeader2Txt(String expectedTxt) {
-		assertEquals(commons.getText(h2TextElement), expectedTxt);	
-	
-}
 	
 	private void verifyLogo() {
 		commons.isDisplay(logoElement);
@@ -55,12 +68,20 @@ public class HomePage {
 	}
 
 	
-	public void homepageSteps(String expectedTxt,String zipValue) {
-		verifyHeader2Txt(expectedTxt);
+	public void homepageSteps(String zipValue) {
 		verifyLogo();
 		inputZipcode(zipValue);
 		verifyStartQuoteButton();
 		clickStartQuoteButton();
+		clickAtPopUp();
+	}
+	
+	public void homepageSteps(AutoData autoData) {
+		verifyLogo();
+		inputZipcode(autoData.getZipCode());
+		verifyStartQuoteButton();
+		clickStartQuoteButton();
+		clickAtPopUp();
 	}
 }
 

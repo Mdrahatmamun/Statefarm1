@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.statefarm1.qa.common.Common;
+import com.statefarm1.qa.utils.AutoData;
 
 public class AutoQuotePage {
 
@@ -95,5 +96,15 @@ public class AutoQuotePage {
 		verifyPageText(text);
 		
 	}
-
+	public void autoQuotePageSteps(AutoData autoData) {
+		inputFirstName(autoData.getFirstName());
+		inputLastName(autoData.getLastName());
+		inputHomeAddress(autoData.getAddress());
+		inputApt(autoData.getApt());
+		inputDob(autoData.getDob());
+		acceptButton();
+		nextButton();
+		verifyPageText(autoData.getExpectedText());
+		
+	}
 }
