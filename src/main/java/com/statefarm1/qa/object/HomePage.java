@@ -1,6 +1,6 @@
 package com.statefarm1.qa.object;
 
-import static org.testng.Assert.assertEquals;
+import java.util.Map;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.statefarm1.qa.common.Common;
 import com.statefarm1.qa.utils.AutoData;
+import static com.statefarm1.qa.utils.DataMap.*;
 
 public class HomePage {
 
@@ -71,6 +72,14 @@ public class HomePage {
 	public void homepageSteps(String zipValue) {
 		verifyLogo();
 		inputZipcode(zipValue);
+		verifyStartQuoteButton();
+		clickStartQuoteButton();
+		clickAtPopUp();
+	}
+	
+	public void homepageSteps(Map<String, String> map) {
+		verifyLogo();
+		inputZipcode(map.get(ZipCode.getValue()));
 		verifyStartQuoteButton();
 		clickStartQuoteButton();
 		clickAtPopUp();

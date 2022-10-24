@@ -2,6 +2,9 @@ package com.statefarm1.qa.object;
 
 import static org.testng.Assert.assertEquals;
 
+import java.util.Map;
+
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,6 +13,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.statefarm1.qa.common.Common;
 import com.statefarm1.qa.utils.AutoData;
+import static com.statefarm1.qa.utils.DataMap.*;
 
 public class AutoQuotePage {
 
@@ -96,6 +100,19 @@ public class AutoQuotePage {
 		verifyPageText(text);
 		
 	}
+	
+	public void autoQuotePageSteps(Map<String, String>map) {
+		inputFirstName(map.get(FirstName.getValue()));
+		inputLastName(map.get(LastName.getValue()));
+		inputHomeAddress(map.get(Address.name()));
+		inputApt(map.get(Apt.name()));
+		inputDob(map.get(DOB.name()));
+		acceptButton();
+		nextButton();
+		verifyPageText(map.get(SubText.getValue()));
+		
+	}
+	
 	public void autoQuotePageSteps(AutoData autoData) {
 		inputFirstName(autoData.getFirstName());
 		inputLastName(autoData.getLastName());
